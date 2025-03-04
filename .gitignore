@@ -1,0 +1,7 @@
+# Local files/directories
+*.local
+/.local
+
+# Godot 4+ specific ignores
+.godot/
+/android/
