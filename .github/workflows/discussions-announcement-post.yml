@@ -1,0 +1,16 @@
+name: Discussions Announcement Post Handler
+
+on:
+  discussion:
+    types: created
+
+jobs:
+  publish-announcement:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Discord Notification
+        if: ${{ github.event.discussion && !github.event.comment && github.event.discussion.category.name == 'announcements' }}
+        uses: tsickert/discord-webhook@v5.3.0
+        with:
+          webhook-url: ${{ secrets.ANNOUNCEMENTS_WEBHOOK_URL }}
+          content: "<@&1216918889712189490> New Vincent announcement! ${{ github.event.discussion.html_url }}"
