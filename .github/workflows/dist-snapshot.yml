@@ -27,6 +27,7 @@ jobs:
         uses: chickensoft-games/setup-godot@v2.1.1
         with:
           version: 4.4.0
+          use-dotnet: false
 
       - name: Compile Application (Windows)
         if: matrix.os == 'windows-latest'
