@@ -21,6 +21,11 @@ config/icon="uid://bdq1iw62lrfk8"
 
 driver/driver="Dummy"
 
+[display]
+
+window/energy_saving/keep_screen_on=false
+window/vsync/vsync_mode=0
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

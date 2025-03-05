@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://qubiww5n0s3j"]
+[gd_scene load_steps=3 format=3 uid="uid://qubiww5n0s3j"]
 
+[ext_resource type="Script" uid="uid://hevuvnvmymg5" path="res://scenes/main.gd" id="1_0wfyh"]
 [ext_resource type="Texture2D" uid="uid://bdq1iw62lrfk8" path="res://resources/icon.png" id="1_o5qli"]
 
 [node name="Control" type="Control"]
@@ -9,15 +10,24 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_0wfyh")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
-offset_right = 355.0
-offset_bottom = 147.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer"]
+layout_mode = 2
 theme_override_constants/margin_left = 50
 theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
 
-[node name="Button" type="Button" parent="MarginContainer"]
+[node name="Button" type="Button" parent="CenterContainer/MarginContainer"]
 layout_mode = 2
 text = "COOL BUTTON (it's very cool)"
 icon = ExtResource("1_o5qli")
