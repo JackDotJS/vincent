@@ -1,7 +1,8 @@
 [gd_scene load_steps=3 format=3 uid="uid://qubiww5n0s3j"]
 
 [ext_resource type="Script" uid="uid://hevuvnvmymg5" path="res://scenes/main.gd" id="1_0wfyh"]
-[ext_resource type="Texture2D" uid="uid://bdq1iw62lrfk8" path="res://resources/icon.png" id="1_o5qli"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_o5qli"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -12,7 +13,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_0wfyh")
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -20,15 +21,146 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="CenterContainer"]
+[node name="TopBar" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 50
-theme_override_constants/margin_top = 50
-theme_override_constants/margin_right = 50
-theme_override_constants/margin_bottom = 50
 
-[node name="Button" type="Button" parent="CenterContainer/MarginContainer"]
+[node name="MainToolBar" type="VBoxContainer" parent="VBoxContainer/TopBar"]
 layout_mode = 2
-text = "COOL BUTTON (it's very cool)"
-icon = ExtResource("1_o5qli")
-expand_icon = true
+
+[node name="MenuBar" type="HBoxContainer" parent="VBoxContainer/TopBar/MainToolBar"]
+layout_mode = 2
+
+[node name="FileMenuButton" type="MenuButton" parent="VBoxContainer/TopBar/MainToolBar/MenuBar"]
+layout_mode = 2
+text = "File"
+switch_on_hover = true
+item_count = 6
+popup/item_0/text = "New..."
+popup/item_0/id = 0
+popup/item_1/text = "Open..."
+popup/item_1/id = 1
+popup/item_2/text = "Open Recent"
+popup/item_2/id = 2
+popup/item_3/text = "Save"
+popup/item_3/id = 3
+popup/item_4/text = "Save As..."
+popup/item_4/id = 4
+popup/item_5/text = "Exit"
+popup/item_5/id = 5
+
+[node name="EditMenuButton" type="MenuButton" parent="VBoxContainer/TopBar/MainToolBar/MenuBar"]
+layout_mode = 2
+text = "Edit
+"
+switch_on_hover = true
+item_count = 3
+popup/item_0/text = "Undo"
+popup/item_0/id = 0
+popup/item_1/text = "Redo"
+popup/item_1/id = 1
+popup/item_2/text = "Options"
+popup/item_2/id = 2
+
+[node name="ViewMenuButton" type="MenuButton" parent="VBoxContainer/TopBar/MainToolBar/MenuBar"]
+layout_mode = 2
+text = "View"
+switch_on_hover = true
+
+[node name="ImageMenuButton" type="MenuButton" parent="VBoxContainer/TopBar/MainToolBar/MenuBar"]
+layout_mode = 2
+text = "Image"
+switch_on_hover = true
+
+[node name="LayersMenuButton" type="MenuButton" parent="VBoxContainer/TopBar/MainToolBar/MenuBar"]
+layout_mode = 2
+text = "Layers"
+switch_on_hover = true
+
+[node name="EffectsMenuButton" type="MenuButton" parent="VBoxContainer/TopBar/MainToolBar/MenuBar"]
+layout_mode = 2
+text = "Effects"
+switch_on_hover = true
+
+[node name="HelpMenuButton" type="MenuButton" parent="VBoxContainer/TopBar/MainToolBar/MenuBar"]
+layout_mode = 2
+text = "Help"
+switch_on_hover = true
+item_count = 1
+popup/item_0/text = "GitHub"
+popup/item_0/id = 0
+
+[node name="FavoritesBar" type="HBoxContainer" parent="VBoxContainer/TopBar/MainToolBar"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="VBoxContainer/TopBar"]
+custom_minimum_size = Vector2(250, 75)
+layout_mode = 2
+
+[node name="HFlowContainer" type="HFlowContainer" parent="VBoxContainer/TopBar/Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="VBoxContainer/TopBar/Button/HFlowContainer"]
+layout_mode = 2
+stretch_mode = 1
+alignment_horizontal = 0
+alignment_vertical = 0
+
+[node name="ProjectThumbnail" type="TextureRect" parent="VBoxContainer/TopBar/Button/HFlowContainer/AspectRatioContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TopBar/Button/HFlowContainer"]
+layout_mode = 2
+
+[node name="ProjectName" type="Label" parent="VBoxContainer/TopBar/Button/HFlowContainer/VBoxContainer"]
+layout_mode = 2
+text = "Untitled Project"
+
+[node name="ProjectResolution" type="Label" parent="VBoxContainer/TopBar/Button/HFlowContainer/VBoxContainer"]
+layout_mode = 2
+text = "800 x 600"
+
+[node name="MainContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LeftToolColumn" type="CenterContainer" parent="VBoxContainer/MainContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/MainContainer/LeftToolColumn"]
+layout_mode = 2
+text = "tool column L"
+
+[node name="Viewport" type="ScrollContainer" parent="VBoxContainer/MainContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+horizontal_scroll_mode = 2
+vertical_scroll_mode = 2
+
+[node name="Canvas" type="TextureRect" parent="VBoxContainer/MainContainer/Viewport"]
+custom_minimum_size = Vector2(800, 600)
+layout_mode = 2
+texture = SubResource("CanvasTexture_o5qli")
+
+[node name="RightToolColumn" type="CenterContainer" parent="VBoxContainer/MainContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/MainContainer/RightToolColumn"]
+layout_mode = 2
+text = "tool column R"
+
+[node name="StatusBar" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="InfoText" type="Label" parent="VBoxContainer/StatusBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+
+[node name="AppVersionText" type="Label" parent="VBoxContainer/StatusBar"]
+layout_mode = 2
+text = "Vincent 0.0.1-prealpha"
